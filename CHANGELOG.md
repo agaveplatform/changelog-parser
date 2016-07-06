@@ -1,3 +1,19 @@
+## [0.1.3] - 2016-07-07
+### Added
+- Added support for fetching Changelog files from URL in the `source=<url>` query parameter.
+- Added support for forcing cache invalidation using the `force=true` query parameter.
+- Added support for fetching the latest entry by specifying the `latest=true` query parameter.
+- Added the [Agave Science API](http://agaveapi.co) [CHANGELOG.MD](https://bitbucket.org/agaveapi/agave/raw/develop/CHANGELOG.md) as the default content returned.
+- Added Dockerfile and Docker Compose files for easy deployment.
+
+### CHANGED
+- Updated to run as a web API.
+- Updated parser to work with URLs as well as files.
+
+### REMOVED
+- No change.
+
+
 ## Unreleased
 ### Added
 - Cache manager unit tests

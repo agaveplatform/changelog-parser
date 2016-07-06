@@ -45,6 +45,13 @@ To get the last version data of your changelog file, write the following code :
 $changelogManager->getLastVersion('CHANGELOG.md', 'json');
 ```
 
+To get a changelog from a remote URL, write the following code:
+
+```php
+// The second parameter is optional, default is 'json'
+$changelogManager->getLastVersion('http://example.com/CHANGELOG.md', 'json');
+```
+
 To get all data contained in the changelog file, use the following method :
 
 ```php
@@ -64,3 +71,20 @@ $cacheManager = $changelogManager->getCacheManager();
 // In the current example, the cache validity time is one day
 $cacheManager->setCacheTime(60 * 60 * 24);
 ```
+
+API
+------------
+
+This parser may be run as an API. Simply copy the repository to your web server and reference the `example` directory. For convenience, a Docker Compose file is included. Running the following command will start a Docker container with the changelog-parser API running at [http://<docker_host>:8888
+
+```
+docker-compose up -d
+```
+
+The API accepts three query parameters:
+
+| Name | Type | Description |
+-----------------------------
+| source | url | A valid URL to the changelog you wish to parse. |
+| force  | boolean | True if the cache should be flushed and the changelog fetched and regenerated. |
+| latest | boolean | True if only the latest entry in the changelog should be returned. |

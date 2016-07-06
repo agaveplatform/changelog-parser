@@ -6,3 +6,4 @@
 composer.lock
 /tests/fixtures/storage/*
 !/tests/fixtures/storage/.gitkeep
+/example

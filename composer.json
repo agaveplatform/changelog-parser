@@ -10,6 +10,11 @@
             "name": "Axel Venet",
             "email": "kern046@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Rion Dooley",
+            "email": "dooley@tacc.utexas.edu",
+            "role": "Developer"
         }
     ],
     "require": {
