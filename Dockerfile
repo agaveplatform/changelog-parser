@@ -1,4 +1,4 @@
-FROM deardooley/php:5.6-composer
+FROM deardooley/php-composer:5.6
 
 ENV DOCUMENT_ROOT /var/www/html/api
 
