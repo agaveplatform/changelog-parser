@@ -84,7 +84,7 @@ docker-compose up -d
 The API accepts three query parameters:
 
 | Name | Type | Description |
------------------------------
+|------|------|-------------|
 | source | url | A valid URL to the changelog you wish to parse. |
 | force  | boolean | True if the cache should be flushed and the changelog fetched and regenerated. |
 | latest | boolean | True if only the latest entry in the changelog should be returned. |
