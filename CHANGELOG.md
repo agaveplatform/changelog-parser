@@ -1,3 +1,14 @@
+## [0.1.4] - 2016-10-14
+### Added
+- Added Swagger documentation for the API in YAML and JSON.
+
+### CHANGED
+- No change.
+
+### REMOVED
+- No change.
+
+
 ## [0.1.3] - 2016-07-07
 ### Added
 - Added support for fetching Changelog files from URL in the `source=<url>` query parameter.

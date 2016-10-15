@@ -32,7 +32,7 @@ else {
   }
 
   if (empty($_GET['source'])) {
-    $source_url = 'https://bitbucket.org/agaveapi/agave/raw/develop/CHANGELOG.md';
+    $source_url = 'https://bitbucket.org/agaveapi/agave-flat/raw/master/CHANGELOG.md';
   }
   else {
     $source_url = $_GET['source'];
