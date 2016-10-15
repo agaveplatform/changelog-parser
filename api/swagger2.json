@@ -1,0 +1,108 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "REST api for parsing changelogs.",
+    "version" : "1.0.0",
+    "title" : "changelog-parser",
+    "contact" : { },
+    "license" : {
+      "name" : "BSD 2-Clause",
+      "url" : "https://opensource.org/licenses/BSD-2-Clause"
+    }
+  },
+  "host" : "agaveapi.co",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/changelog-parser" : {
+      "get" : {
+        "summary" : "Fetch a changelog and parse into JSON",
+        "description" : "Parse a remote CHANGELOG.MD file and return the formatted document as a JSON document",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "source",
+          "in" : "query",
+          "description" : "Provide any HTTP url from which to fetch the CHANGELOG.md document.",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "https://bitbucket.org/agaveapi/agave-flat/raw/013a48e857f05a19d933f299a1dac45074d42bbe/CHANGELOG.md"
+        }, {
+          "name" : "force",
+          "in" : "query",
+          "description" : "If true, the source will be pulled fresh rather than requested from the cache.",
+          "required" : false,
+          "type" : "boolean",
+          "x-example" : "false"
+        }, {
+          "name" : "latest",
+          "in" : "query",
+          "description" : "If true, only the latest entry in the changelog will be returned.",
+          "required" : false,
+          "type" : "boolean",
+          "x-example" : "false"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "An object whose fields are release numbers in #.#.# format and values are `Changelog` objects defined in this document.",
+            "schema" : {
+              "$ref" : "#/definitions/Changelog"
+            }
+          },
+          "404" : {
+            "description" : "The changelog file specified in the source url was not found.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "500" : {
+            "description" : "Failed to parse the changelog document. An empty response is expected.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Entry" : {
+      "type" : "object",
+      "required" : [ "date" ],
+      "properties" : {
+        "date" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date that this Entry was made in `yyyy-mm-dd` format."
+        },
+        "items" : {
+          "type" : "object",
+          "description" : "Structured object containing the details of the changes made in this Entry.",
+          "properties" : {
+            "added" : {
+              "type" : "array",
+              "description" : "A list of all things added in this Entry.",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "changed" : {
+              "type" : "array",
+              "description" : "A list of all things changed in this Entry.",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "removed" : {
+              "type" : "array",
+              "description" : "A list of all things removed in this Entry.",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          },
+          "required" : [ "added", "changed", "removed" ]
+        }
+      },
+      "description" : "Each entry represents a single release in a changelog at a specific date in time. Entries have a date and item object representing arrays of the things added, changed, and removed in the given release."
+    }
+  }
+}
